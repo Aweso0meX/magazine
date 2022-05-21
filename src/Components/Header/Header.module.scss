@@ -1,0 +1,30 @@
+.header {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.header img {
+  max-width: 200px;
+}
+
+.basketValue {
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+}
+
+.basketValue:first-child {
+  border-right: 1px solid #363636;
+}
+
+.valueCurrency {
+  margin-left: 10px;
+}
+
+.valueItems {
+  margin-left: 10px;
+}

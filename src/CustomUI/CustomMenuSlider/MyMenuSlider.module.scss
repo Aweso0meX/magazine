@@ -1,0 +1,97 @@
+.wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: none;
+
+}
+
+.activeRight {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.activeBottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.activeLeft {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.activeTop {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.activeMenuRight {
+  min-width: 30%;
+  height: 100%;
+  animation: menuFromRightA 1s 1;
+}
+
+.activeMenuButton {
+  min-height: 30%;
+  width: 100%;
+  animation: menuFromButtonA 1s 1;
+}
+
+.activeMenuLeft {
+  min-width: 30%;
+  height: 100%;
+  animation: menuFromLeftA 1s 1;
+}
+
+.activeMenuTop {
+  min-height: 30%;
+  width: 100%;
+  animation: menuFromTopA 1s 1;
+}
+
+.childrenWrapper {
+  background-color: #fff;
+}
+
+@keyframes menuFromRightA {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes menuFromButtonA {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes menuFromLeftA {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes menuFromTopA {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
