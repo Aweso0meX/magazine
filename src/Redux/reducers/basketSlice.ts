@@ -1,30 +1,28 @@
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { IBasketItems } from '../../Types/Types'
-import { createSlice , PayloadAction } from '@reduxjs/toolkit'
 
-
-interface basketState {
-  valueCurrency : number,
-  valueItems : number,
-  isVisible : boolean,
-  itemsList : IBasketItems[]
+interface BasketState {
+  valueCurrency: number
+  valueItems: number
+  isVisible: boolean
+  itemsList: IBasketItems[]
 }
 
-export const initialState : basketState = {
-  valueCurrency : 0 ,
-  valueItems : 0 ,
-  isVisible : true ,
-  itemsList : []
+export const initialState: BasketState = {
+  valueCurrency: 0,
+  valueItems: 0,
+  isVisible: true,
+  itemsList: [],
 }
 
-export const basketSlice = createSlice ({
-  name : 'basket' ,
-  initialState ,
-  reducers : {
-    toggleBasket (state , action : PayloadAction<boolean>) {
+export const basketSlice = createSlice({
+  name: 'basket',
+  initialState,
+  reducers: {
+    toggleBasket(state, action: PayloadAction<boolean>) {
       state.isVisible = action.payload
-    } ,
-
-  }
+    },
+  },
 })
 
 export const { toggleBasket } = basketSlice.actions

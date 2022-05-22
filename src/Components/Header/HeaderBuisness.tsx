@@ -6,6 +6,7 @@ import {
 import { useAppDispatch, useAppSelector } from '../../Hooks/Redux'
 import { toggleBasket } from '../../Redux/reducers/basketSlice'
 import { Header } from './Header'
+import { Basket } from './basket/Basket'
 
 export const HeaderBuisness = () => {
   const { valueItems, valueCurrency, isVisible } = useAppSelector(
@@ -27,9 +28,9 @@ export const HeaderBuisness = () => {
       <MyMenuSlider
         isVisible={isVisible}
         setVisible={(e) => dispatch(toggleBasket(e))}
-        variant={MenuPosition.fromRight}
+        variant={MenuPosition.fromLeft}
       >
-        Yo
+        <Basket />
       </MyMenuSlider>
     </>
   )

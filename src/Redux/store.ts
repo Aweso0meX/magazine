@@ -1,10 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { rootReducer } from './rootReducer'
 
-
 export const setupStore = () => {
-  return configureStore ({
-    reducer : rootReducer ,
+  return configureStore({
+    reducer: rootReducer,
   })
 }
 

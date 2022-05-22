@@ -22,10 +22,30 @@ export const MyMenuSlider: FC<MyMenuSliderProps> = ({
   children,
   variant,
 }) => {
-  const classWrapper = cn(styles.wrapper)
+  const classWrapper = cn(styles.wrapper, {
+    [styles.activeBottom]: variant === MenuPosition.fromBottom,
+    [styles.activeLeft]: variant === MenuPosition.fromLeft,
+    [styles.activeRight]: variant === MenuPosition.fromRight,
+    [styles.activeTop]: variant === MenuPosition.fromTop,
+  })
+  const classChildrenWrapper = cn(styles.childrenWrapper, {
+    [styles.activeMenuBotton]: variant === MenuPosition.fromBottom,
+    [styles.activeMenuLeft]: variant === MenuPosition.fromLeft,
+    [styles.activeMenuRight]: variant === MenuPosition.fromRight,
+    [styles.activeMenuTop]: variant === MenuPosition.fromTop,
+  })
+
   return (
-    <div className={classWrapper} onClick={() => setVisible(false)}>
-      <div onClick={(e) => e.stopPropagation()}>{children}</div>
+    <div
+      className={isVisible ? classWrapper : styles.wrapper}
+      onClick={() => setVisible(false)}
+    >
+      <div
+        className={isVisible ? classChildrenWrapper : ''}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {children}
+      </div>
     </div>
   )
 }

@@ -6,7 +6,7 @@ import logo from '../../Assets/logo.svg'
 import styles from './Header.module.scss'
 
 interface HeaderProps {
-  toggleMenu: (e: any) => void
+  toggleMenu: (e: never) => void
   valueCurrency: number
   valueItems: number
 }
@@ -19,6 +19,7 @@ export const Header: FC<HeaderProps> = ({
   return (
     <div className={styles.header}>
       <img src={logo} alt="logo" />
+
       <Button onClick={toggleMenu} variant="contained" color={'info'}>
         <>
           <div className={styles.basketValue}>
