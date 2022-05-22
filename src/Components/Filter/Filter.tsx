@@ -6,23 +6,28 @@ import {
   SelectChangeEvent,
   TextField,
 } from '@mui/material'
-import React, { useState } from 'react'
+import React, { FC } from 'react'
+import { FilterObj } from '../../Types/Types'
 import styles from './Filter.module.scss'
 
-export const Filter = () => {
-  const [sortPrice, setSortPrice] = useState<string>('')
-  const [sortColor, setSortColor] = useState<string>('')
-  const [sortBrand, setSortBrand] = useState<string>('')
+interface FilterProps {
+  filter: FilterObj
+  setFilter: (e: FilterObj) => void
+}
 
+export const Filter: FC<FilterProps> = ({ filter, setFilter }) => {
   const handleChangePrice = (event: SelectChangeEvent) => {
-    setSortPrice(event.target.value)
+    setFilter({ ...filter, sortPrice: event.target.value })
   }
+
   const handleChangeColor = (event: SelectChangeEvent) => {
-    setSortColor(event.target.value)
+    setFilter({ ...filter, sortColor: event.target.value })
   }
+
   const handleChangeBrand = (event: SelectChangeEvent) => {
-    setSortBrand(event.target.value)
+    setFilter({ ...filter, sortBrand: event.target.value })
   }
+
   return (
     <div className={styles.filterWrapper}>
       <div className={styles.sort}>
@@ -31,11 +36,12 @@ export const Filter = () => {
           <Select
             labelId="demo-simple-select-filled-label"
             id="demo-simple-select-filled"
-            value={sortPrice}
+            value={filter.sortPrice}
             onChange={handleChangePrice}
+            name={'sortBYPrice'}
           >
-            <MenuItem value={10}>По убыванию</MenuItem>
-            <MenuItem value={20}>По возрастанию</MenuItem>
+            <MenuItem value={'decrement'}>По убыванию</MenuItem>
+            <MenuItem value={'increment'}>По возрастанию</MenuItem>
           </Select>
         </FormControl>
 
@@ -44,13 +50,14 @@ export const Filter = () => {
           <Select
             labelId="demo-simple-select-filled-label"
             id="demo-simple-select-filled"
-            value={sortColor}
+            value={filter.sortColor}
             onChange={handleChangeColor}
+            name={'sortBYColor'}
           >
-            <MenuItem value={10}>Белый</MenuItem>
-            <MenuItem value={20}>Черный</MenuItem>
-            <MenuItem value={20}>Красный</MenuItem>
-            <MenuItem value={20}>Серый</MenuItem>
+            <MenuItem value={'white'}>Белый</MenuItem>
+            <MenuItem value={'black'}>Черный</MenuItem>
+            <MenuItem value={'red'}>Красный</MenuItem>
+            <MenuItem value={'gray'}>Серый</MenuItem>
           </Select>
         </FormControl>
 
@@ -59,16 +66,23 @@ export const Filter = () => {
           <Select
             labelId="demo-simple-select-filled-label"
             id="demo-simple-select-filled"
-            value={sortBrand}
+            value={filter.sortBrand}
             onChange={handleChangeBrand}
+            name={'sortBYBrand'}
           >
-            <MenuItem value={10}>Nike</MenuItem>
-            <MenuItem value={20}>Adidas</MenuItem>
-            <MenuItem value={20}>Reebok</MenuItem>
+            <MenuItem value={'Nike'}>Nike</MenuItem>
+            <MenuItem value={'Adidas'}>Adidas</MenuItem>
+            <MenuItem value={'Reebok'}>Reebok</MenuItem>
           </Select>
         </FormControl>
       </div>
-      <TextField id="filled-basic" label="Поиск" variant="filled" />
+      <TextField
+        value={filter.query}
+        id="filled-basic"
+        label="Поиск по названию"
+        variant="filled"
+        onChange={(e) => setFilter({ ...filter, query: e.target.value })}
+      />
     </div>
   )
 }

@@ -11,7 +11,7 @@ interface BasketState {
 export const initialState: BasketState = {
   valueCurrency: 0,
   valueItems: 0,
-  isVisible: true,
+  isVisible: false,
   itemsList: [],
 }
 
@@ -19,7 +19,7 @@ export const basketSlice = createSlice({
   name: 'basket',
   initialState,
   reducers: {
-    toggleBasket(state, action: PayloadAction<boolean>) {
+    toggleBasket(state: BasketState, action: PayloadAction<boolean>) {
       state.isVisible = action.payload
     },
   },

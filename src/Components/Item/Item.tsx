@@ -1,10 +1,4 @@
-import {
-  Button,
-  FormControlLabel,
-  Radio,
-  RadioGroup,
-  Rating,
-} from '@mui/material'
+import { Button, Rating, ToggleButton, ToggleButtonGroup } from '@mui/material'
 import React, { FC, useState } from 'react'
 import { IItem } from '../../Types/Types'
 import styles from './Item.module.scss'
@@ -16,6 +10,14 @@ interface ItemProps {
 export const Item: FC<ItemProps> = ({ item }) => {
   const [itemValue, setItemValue] = useState<number | null>(2)
   const [rating, setRating] = useState<number | null>(item.rating)
+
+  const [sizeValue, setSizeValue] = useState<number>(0)
+  const handleChange = (
+    event: React.MouseEvent<HTMLElement>,
+    newAlignment: number
+  ) => {
+    setSizeValue(newAlignment)
+  }
   return (
     <div className={styles.ItemWrapper}>
       <img className={styles.image} src={item.image} alt="item" />
@@ -31,15 +33,18 @@ export const Item: FC<ItemProps> = ({ item }) => {
         </div>
         <h4 className={styles.sizeFont}>Выберите размер:</h4>
         <div className={styles.size}>
-          <RadioGroup
-            row
-            aria-labelledby="demo-row-radio-buttons-group-label"
-            name="row-radio-buttons-group"
+          <ToggleButtonGroup
+            color="primary"
+            value={sizeValue}
+            exclusive
+            onChange={handleChange}
           >
             {item.size.map((size) => (
-              <FormControlLabel value={size} control={<Radio />} label={size} />
+              <ToggleButton key={size} value={size}>
+                {size}
+              </ToggleButton>
             ))}
-          </RadioGroup>
+          </ToggleButtonGroup>
         </div>
         <div className={styles.buy}>
           <div className={styles.price}>

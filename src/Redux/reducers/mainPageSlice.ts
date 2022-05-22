@@ -1,5 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { IItem } from '../../Types/Types'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { Filter } from '../../Components/Filter/Filter'
+import { FilterObj, IItem } from '../../Types/Types'
 import { Items } from '../items'
 
 interface MainPageState {
